@@ -13,9 +13,19 @@ describe TaxRateCalculatorFactory do
       calculator.calculate.should == 0.1
     end
     
-    it 'should return a tax_rate_calculator that returns a tax rate of 0% if the value [food] is passed' do
-      calculator = TaxRateCalculatorFactory.load_tax_rate_calculator(%w[food])
+    it 'should return a tax_rate_calculator that returns a tax rate of 0% if the value [exempt] is passed' do
+      calculator = TaxRateCalculatorFactory.load_tax_rate_calculator(%w[exempt])
       calculator.calculate.should == 0
+    end
+    
+    it 'should return a tax_rate_calculator that returns a tax rate of 15% if the value of [import] is passed' do
+      calculator = TaxRateCalculatorFactory.load_tax_rate_calculator(%w[import])
+      calculator.calculate.should == 0.15
+    end
+    
+    it 'should return a tax_rate_calculator that returns a tax rate of 5% if the value of [import, exempt] is passed' do
+      calculator = TaxRateCalculatorFactory.load_tax_rate_calculator(%w[import exempt])
+      calculator.calculate.should == 0.05
     end
   end
 end
