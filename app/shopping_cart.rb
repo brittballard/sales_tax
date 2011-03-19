@@ -1,5 +1,5 @@
 class ShoppingCart
-  attr_accessor :products, :receipt
+  attr_reader :products, :receipt
 
   def initialize
     @products = []
