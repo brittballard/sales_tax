@@ -7,12 +7,12 @@ Feature: Creating Receipts for Shopping Carts
     Given A customer with a shoping cart like:
     |Quantity |Item         |Imported |Exempt |Price  |
     |1        |book         |false    |true   |12.49  |
-    |1        |music cd     |false    |false  |14.99  |
+    |1        |music CD     |false    |false  |14.99  |
     |1        |chocolate bar|false    |true   |0.85   |
     When They check out
     Then The receipt should read:
       """
-      1 book : 12.49
+      1 book: 12.49
       1 music CD: 16.49
       1 chocolate bar: 0.85
       Sales Taxes: 1.50
@@ -23,7 +23,7 @@ Feature: Creating Receipts for Shopping Carts
     Given A customer with a shoping cart like:
     |Quantity |Item                         |Imported |Exempt |Price  |
     |1        |imported box of chocolates   |true     |true   |10.00  |
-    |1        |imported perfume             |true     |false  |47.50  |
+    |1        |imported bottle of perfume   |true     |false  |47.50  |
     When They check out
     Then The receipt should read:
       """
@@ -39,7 +39,7 @@ Feature: Creating Receipts for Shopping Carts
     |1        |imported bottle of perfume       |true     |false  |27.99  |
     |1        |bottle of perfume                |false    |false  |18.99  |
     |1        |packet of headache pills         |false    |true   |9.75   |
-    |1        |box of chocolates                |false    |true   |11.25  |
+    |1        |box of imported chocolates       |true     |true   |11.25  |
     When They check out
     Then The receipt should read:
       """

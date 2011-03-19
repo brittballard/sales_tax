@@ -29,10 +29,10 @@ class ShoppingCart
     end
     
     product_hash.keys.each do |product|
-      @receipt += product_hash[product][:total].to_s + " " + product_hash[product][:description] + " : " + sprintf("%.2f", product_hash[product][:price]) + "\r\n"
+      @receipt += product_hash[product][:total].to_s + " " + product_hash[product][:description] + ": " + sprintf("%.2f", product_hash[product][:price]) + "\n"
     end
     
-    @receipt += "Sales Taxes: " + sprintf("%.2f", sales_tax) + "\r\n"
+    @receipt += "Sales Taxes: " + sprintf("%.2f", sales_tax) + "\n"
     @receipt += "Total: " + sprintf("%.2f", price)
   end
 end

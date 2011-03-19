@@ -2,15 +2,18 @@ Dir.foreach(File.dirname(__FILE__) + "/../../app/") do |f|
   require File.dirname(__FILE__) + "/../../app/" + f if f =~ /\w+\.rb/
 end
 
-shopping_cart = ShoppingCart.new
+shopping_cart = nil
 
 Given /^A customer with a shoping cart like:$/ do |product_table|
-  # table is a Cucumber::Ast::Table
+  shopping_cart = ShoppingCart.new
+  
   product_table.hashes.each do |hash|
     decorators = []
-    decorators << "exempt" if hash["Exempt"]
-    decorators << "import" if hash["Imported"]
-    shopping_cart.add(Product.new(hash["Item"], Float(hash["Price"])))
+    decorators << "exempt" if hash["Exempt"] == "true"
+    decorators << "import" if hash["Imported"] == "true"
+    
+    puts decorators.to_s
+    shopping_cart.add(Product.new(hash["Item"], Float(hash["Price"]), decorators))
   end
 end
 
