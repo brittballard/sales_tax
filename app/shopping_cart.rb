@@ -17,22 +17,19 @@ class ShoppingCart
     
     products.each do |product|
       if product_hash.key?(product.description + product.price.to_s)
-        product_hash[product.description + product.price.to_s] << product
+        product_hash[product.description + product.price.to_s][:price] += product.price
+        product_hash[product.description + product.price.to_s][:total] += 1
+        product_hash[product.description + product.price.to_s][:tax] += product.tax
       else
-        product_hash[product.description + product.price.to_s] = [product]
+        product_hash[product.description + product.price.to_s] = { :price => product.price, :total => 1, :tax => product.tax, :description => product.describe_yourself }
       end
+      
+      sales_tax += product.tax
+      price += product.price
     end
     
     product_hash.keys.each do |product|
-      total_price = 0
-      total_sales_tax = 0
-      product_hash[product].each do |p| 
-        total_price += p.price
-        total_sales_tax += p.tax
-      end
-      @receipt += product_hash[product].count.to_s + " " + product_hash[product].first.describe_yourself + " : " + sprintf("%.2f", total_price) + "\r\n"
-      sales_tax += total_sales_tax
-      price += total_price 
+      @receipt += product_hash[product][:total].to_s + " " + product_hash[product][:description] + " : " + sprintf("%.2f", product_hash[product][:price]) + "\r\n"
     end
     
     @receipt += "Sales Taxes: " + sprintf("%.2f", sales_tax) + "\r\n"
