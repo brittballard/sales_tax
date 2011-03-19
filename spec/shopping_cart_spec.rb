@@ -74,5 +74,13 @@ describe ShoppingCart do
       cart.checkout
       cart.receipt.should =~ /2 dummy product : 220.00/
     end
+    
+    it 'should create a receipt that displays product information followed by sales tax followed by total' do
+      cart = ShoppingCart.new
+      cart.add(Product.new("dummy product", 100.00))
+      
+      cart.checkout
+      cart.receipt.should == "1 dummy product : 110.00\r\nSales Taxes: 10.00\r\nTotal: 110.00"
+    end
   end
 end
