@@ -17,6 +17,6 @@ class Product
   end
   
   def describe_yourself
-    description.lstrip.rstrip + " : " + sprintf("%.2f", price)
+    description.lstrip.rstrip
   end
 end

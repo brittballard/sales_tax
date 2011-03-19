@@ -16,7 +16,7 @@ describe Product do
   describe 'describe_yourself' do
     it 'should return a composed of the name and price of the product' do
       TaxRateCalculatorFactory.stub!(:load_tax_rate_calculator).and_return(TaxRateCalculator.new(nil, 0))
-      Product.new("imported bottle of medicine", 100.00, [], TaxRateCalculatorFactory).describe_yourself.should == "imported bottle of medicine : 100.00"
+      Product.new("imported bottle of medicine", 100.00, [], TaxRateCalculatorFactory).describe_yourself.should == "imported bottle of medicine"
     end
   end
   

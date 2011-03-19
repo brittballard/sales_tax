@@ -38,7 +38,7 @@ describe ShoppingCart do
       cart.add(Product.new("dummy product", 100.00))
       
       cart.checkout
-      cart.receipt.should == "dummy product : 110.00\r\nSales Taxes: 10.00\r\nTotal: 110.00"
+      cart.receipt.should == "1 dummy product : 110.00\r\nSales Taxes: 10.00\r\nTotal: 110.00"
     end
     
     it 'should create a receipt for multiple products with each product on a new line' do
@@ -47,7 +47,7 @@ describe ShoppingCart do
       cart.add(Product.new("dummy product", 80.00))
       
       cart.checkout
-      cart.receipt.should == "dummy product : 110.00\r\ndummy product : 88.00\r\nSales Taxes: 18.00\r\nTotal: 88.00"
+      cart.receipt.should == "1 dummy product : 110.00\r\n1 dummy product : 88.00\r\nSales Taxes: 18.00\r\nTotal: 198.00"
     end
     
     it 'should create a receipt that displays tax information on the second to bottom line' do
@@ -55,7 +55,7 @@ describe ShoppingCart do
       cart.add(Product.new("dummy product", 100.00))
       
       cart.checkout
-      cart.receipt.should == "dummy product : 110.00\r\nSales Taxes: 10.00\r\nTotal: 110.00"
+      cart.receipt.should == "1 dummy product : 110.00\r\nSales Taxes: 10.00\r\nTotal: 110.00"
     end
     
     it 'should create a receipt that displays the price of the goods purchased' do
@@ -63,7 +63,16 @@ describe ShoppingCart do
       cart.add(Product.new("dummy product", 100.00))
       
       cart.checkout
-      cart.receipt.should == "dummy product : 110.00\r\nSales Taxes: 10.00\r\nTotal: 110.00"
+      cart.receipt.should == "1 dummy product : 110.00\r\nSales Taxes: 10.00\r\nTotal: 110.00"
+    end
+    
+    it 'should not show a product with the same price and same description twice and should show quanitity when applicable' do
+      cart = ShoppingCart.new
+      cart.add(Product.new("dummy product", 100.00))
+      cart.add(Product.new("dummy product", 100.00))
+            
+      cart.checkout
+      cart.receipt.should == "2 dummy product : 220.00\r\nSales Taxes: 20.00\r\nTotal: 220.00"
     end
   end
 end
