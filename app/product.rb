@@ -9,7 +9,7 @@ class Product
   end
   
   def tax
-    @price_before_tax * @tax_rate_calculator.calculate
+    @tax_rate_calculator.calculate(@price_before_tax)
   end
   
   def price

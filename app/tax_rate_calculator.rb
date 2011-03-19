@@ -8,7 +8,7 @@ class TaxRateCalculator
     @tax_rate = tax_rate
   end
   
-  def calculate
-    calculator.nil? ? tax_rate : (tax_rate + calculator.calculate).round(10)
+  def calculate(price)
+    calculator.nil? ? price * tax_rate : ((tax_rate * price) + calculator.calculate(price)).round(10)
   end
 end

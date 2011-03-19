@@ -21,19 +21,19 @@ describe TaxRateCalculator do
   end
   
   describe 'calculate' do
-    it 'should return tax_rate when no decorator class is sent as an argument' do
+    it 'should return price * tax_rate when no decorator class is sent as an argument' do
       calculator = TaxRateCalculator.new(nil, 0.1)
-      calculator.calculate.should == 0.1
+      calculator.calculate(10).should == 1
     end
     
-    it 'should return tax_rate plus decoroator\'s tax_rate when decorator is provided as an argument' do
+    it 'should return tax_rate plus decoroator\'s tax_rate * price when decorator is provided as an argument' do
       calculator = TaxRateCalculator.new(TaxRateCalculator.new(nil, 0.10), 0.15)
-      calculator.calculate.should == 0.25
+      calculator.calculate(10).should == 2.5
     end
     
     it 'should return 0 when decorator\'s tax_rate is the inverse of it\'s own' do
       calculator = TaxRateCalculator.new(TaxRateCalculator.new(nil, 0.1), -0.1)
-      calculator.calculate.should == 0.0
+      calculator.calculate(10).should == 0.0
     end
   end
 end
