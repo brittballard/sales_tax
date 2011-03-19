@@ -1,6 +1,14 @@
-Given /^A customer with a shoping cart like:$/ do |table|
+Dir.foreach(File.dirname(__FILE__) + "/../../app/") do |f| 
+  require File.dirname(__FILE__) + "/../../app/" + f if f =~ /\w+\.rb/
+end
+
+@shopping_cart = ShoppingCart.new
+
+Given /^A customer with a shoping cart like:$/ do |product_table|
   # table is a Cucumber::Ast::Table
-  pending # express the regexp above with the code you wish you had
+  product_table.hashes.each do |hash|
+    @shopping_cart.add(Product.new(hash))
+  end
 end
 
 When /^They check out$/ do
