@@ -7,13 +7,21 @@ describe Product do
   
   describe "product attributes and methods" do
     it "should have a description, price, tax_rate_calculator, and tax_decorators" do
-      Product.new(nil, nil).should respond_to(:description, :price_before_tax, :tax_rate_calculator, :price, :tax)
+      Product.new("", 100).should respond_to(:description, :price_before_tax, :tax_rate_calculator, :price, :tax)
     end
   end
   
   describe 'initializer' do
     it 'should load a tax_rate_calculator' do
-      Product.new(nil, nil).tax_rate_calculator.should be_an_instance_of(TaxCalculator)
+      Product.new("", 100).tax_rate_calculator.should be_an_instance_of(TaxCalculator)
+    end
+    
+    it 'should raise an exception if description is nil' do
+      lambda { Product.new(nil, 100) }.should raise_exception(ArgumentError, "description required.")
+    end
+    
+    it 'should raise an exception if price is nil' do
+      lambda { Product.new("", nil) }.should raise_exception(ArgumentError, "price required.")
     end
   end
   
