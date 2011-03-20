@@ -22,10 +22,7 @@ class OpenStore
     counter
   end
   
-  def self.process_file(infile)
-    shopping_cart = ShoppingCart.new
-    counter = 0
-
+  def self.process_file(infile, shopping_cart=ShoppingCart.new, counter=0)
     while (line = infile.gets)
       counter = self.process_file_line(line, counter, shopping_cart)
     end
@@ -34,9 +31,7 @@ class OpenStore
       shopping_cart.checkout
       puts shopping_cart.receipt
     else
-      puts counter
-      puts shopping_cart.products.count
-      puts "The shopping_carts.txt file provided is in an invalid format."
+      raise ArgumentError.new("The shopping_carts.txt file provided is in an invalid format.")
     end
   end
 end

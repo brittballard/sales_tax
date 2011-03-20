@@ -103,4 +103,36 @@ describe OpenStore do
       end
     end
   end
+  
+  describe 'process_file' do
+    it 'should display an error if the products count doesn\'t match the counter variable' do
+      infile = mock("infile")
+      infile.should_receive(:gets).once.and_return(nil)
+      
+      products = mock("products")
+      products.should_receive(:count).once.and_return(5)
+      
+      shopping_cart = ShoppingCart.new
+      shopping_cart.should_receive(:products).once.and_return(products)
+      
+      lambda { OpenStore.process_file(infile, shopping_cart, 4) }.should raise_exception(ArgumentError, "The shopping_carts.txt file provided is in an invalid format.")
+    end
+
+    it 'should display an error if the products count doesn\'t match the counter variable' do
+      infile = mock("infile")
+      infile.should_receive(:gets).once.and_return(nil)
+      
+      products = mock("products")
+      products.should_receive(:count).once.and_return(5)
+      
+      shopping_cart = ShoppingCart.new
+      shopping_cart.should_receive(:products).once.and_return(products)
+      shopping_cart.should_receive(:checkout).once
+      shopping_cart.should_receive(:receipt).once.and_return("Hello, this is a test!")
+      
+      $stdout.should_receive(:puts).with("Hello, this is a test!")
+      
+      OpenStore.process_file(infile, shopping_cart, 5)
+    end
+  end
 end
