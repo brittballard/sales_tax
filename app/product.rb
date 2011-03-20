@@ -1,6 +1,5 @@
 class Product
-  attr_accessor :description, :price_before_tax
-  attr_reader :tax_rate_calculator
+  attr_reader :tax_rate_calculator, :description, :price_before_tax
   
   def initialize(description, price, tax_decorators=[], tax_calculator_factory=TaxCalculatorFactory)
     raise ArgumentError.new("description required.") if description.nil?

@@ -82,5 +82,13 @@ describe ShoppingCart do
       cart.checkout
       cart.receipt.should == "1 dummy product: 110.00\nSales Taxes: 10.00\nTotal: 110.00"
     end
+    
+    it 'should raise an exception if checkout is called twice' do
+      cart = ShoppingCart.new
+      cart.add(Product.new("dummy product", 100.00))
+      
+      cart.checkout
+      lambda{ cart.checkout }.should raise_exception(Exception, "A shopping cart can only be checkedout once.")
+    end
   end
 end
