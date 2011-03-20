@@ -20,6 +20,6 @@ class Product
   end
   
   def describe_yourself
-    description.lstrip.rstrip
+    description.strip
   end
 end
