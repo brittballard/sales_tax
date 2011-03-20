@@ -38,7 +38,7 @@ describe TaxCalculator do
     
     it 'should round tax to the nearest 0.05' do
       calculator = TaxCalculator.new(nil, 0.05)
-      calculator.calculate(11.25).should == 0.5625
+      calculator.calculate(11.25).should == 0.6
     end
   end
 end

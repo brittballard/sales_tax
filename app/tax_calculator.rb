@@ -9,6 +9,7 @@ class TaxCalculator
   end
   
   def calculate(price)
-    raw_tax = calculator.nil? ? price * tax_rate : (tax_rate * price) + calculator.calculate(price)
+    raw_tax = calculator.nil? ? (price * tax_rate * 20).round.to_f / 20 : ((tax_rate * price) * 20).round.to_f / 20 + calculator.calculate(price)
+    raw_tax < price * tax_rate ? (raw_tax + 0.05).round(2) : raw_tax.round(2)
   end
 end

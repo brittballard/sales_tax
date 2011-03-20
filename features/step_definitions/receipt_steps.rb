@@ -12,7 +12,6 @@ Given /^A customer with a shoping cart like:$/ do |product_table|
     decorators << "exempt" if hash["Exempt"] == "true"
     decorators << "import" if hash["Imported"] == "true"
     
-    puts decorators.to_s
     shopping_cart.add(Product.new(hash["Item"], Float(hash["Price"]), decorators))
   end
 end
