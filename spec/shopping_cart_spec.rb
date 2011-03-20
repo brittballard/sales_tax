@@ -38,7 +38,7 @@ describe ShoppingCart do
       cart.add(Product.new("dummy product", 100.00))
       
       cart.checkout
-      cart.receipt.should =~ /1 dummy product : 110.00/
+      cart.receipt.should =~ /1 dummy product: 110.00/
     end
     
     it 'should create a receipt for multiple products with each product on a new line' do
@@ -47,7 +47,7 @@ describe ShoppingCart do
       cart.add(Product.new("dummy product", 80.00))
       
       cart.checkout
-      cart.receipt.should =~ /1 dummy product : 110.00\r\n1 dummy product : 88.00/
+      cart.receipt.should =~ /1 dummy product: 110.00\n1 dummy product: 88.00/
     end
     
     it 'should create a receipt that displays tax information' do
@@ -72,7 +72,7 @@ describe ShoppingCart do
       cart.add(Product.new("dummy product", 100.00))
             
       cart.checkout
-      cart.receipt.should =~ /2 dummy product : 220.00/
+      cart.receipt.should =~ /2 dummy product: 220.00/
     end
     
     it 'should create a receipt that displays product information followed by sales tax followed by total' do
@@ -80,7 +80,7 @@ describe ShoppingCart do
       cart.add(Product.new("dummy product", 100.00))
       
       cart.checkout
-      cart.receipt.should == "1 dummy product : 110.00\r\nSales Taxes: 10.00\r\nTotal: 110.00"
+      cart.receipt.should == "1 dummy product: 110.00\nSales Taxes: 10.00\nTotal: 110.00"
     end
   end
 end

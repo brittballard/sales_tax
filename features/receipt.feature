@@ -39,7 +39,7 @@ Feature: Creating Receipts for Shopping Carts
     |1        |imported bottle of perfume       |true     |false  |27.99  |
     |1        |bottle of perfume                |false    |false  |18.99  |
     |1        |packet of headache pills         |false    |true   |9.75   |
-    |1        |box of imported chocolates       |true     |true   |11.25  |
+    |1        |imported box of chocolates       |true     |true   |11.25  |
     When They check out
     Then The receipt should read:
       """

@@ -12,7 +12,10 @@ class Product
   end
   
   def tax
-    @tax_rate_calculator.calculate(@price_before_tax)
+    raw_tax = @tax_rate_calculator.calculate(@price_before_tax)
+    
+    rounded_tax = (raw_tax * 20).round.to_f / 20    
+    rounded_tax < raw_tax ? rounded_tax + 0.05 : rounded_tax
   end
   
   def price

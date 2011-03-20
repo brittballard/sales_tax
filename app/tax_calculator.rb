@@ -10,8 +10,5 @@ class TaxCalculator
   
   def calculate(price)
     raw_tax = calculator.nil? ? price * tax_rate : (tax_rate * price) + calculator.calculate(price)
-
-    # http://stackoverflow.com/questions/1346257/round-a-ruby-integer-up-to-the-nearest-0-05
-    (raw_tax * 20).round.to_f / 20
   end
 end

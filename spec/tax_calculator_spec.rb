@@ -33,12 +33,12 @@ describe TaxCalculator do
     
     it 'should return 0 when decorator\'s tax_rate is the inverse of it\'s own' do
       calculator = TaxCalculator.new(TaxCalculator.new(nil, 0.1), -0.1)
-      calculator.calculate(10).should == 0.0
+      calculator.calculate(0.85).should == 0.0
     end
     
     it 'should round tax to the nearest 0.05' do
-      calculator = TaxCalculator.new(nil, 0.1)
-      calculator.calculate(2.36).should == 0.25
+      calculator = TaxCalculator.new(nil, 0.05)
+      calculator.calculate(11.25).should == 0.5625
     end
   end
 end
