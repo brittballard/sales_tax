@@ -105,7 +105,7 @@ describe OpenStore do
   end
   
   describe 'process_file' do
-    it 'should display an error if the products count doesn\'t match the counter variable' do
+    it 'should display an error if the product count doesn\'t match the counter variable' do
       infile = mock("infile")
       infile.should_receive(:gets).once.and_return(nil)
       
@@ -118,7 +118,7 @@ describe OpenStore do
       lambda { OpenStore.process_file(infile, shopping_cart, 4) }.should raise_exception(ArgumentError, "The shopping_carts.txt file provided is in an invalid format.")
     end
 
-    it 'should display an error if the products count doesn\'t match the counter variable' do
+    it 'should display a receipt when the product count matches the counter variable' do
       infile = mock("infile")
       infile.should_receive(:gets).once.and_return(nil)
       
