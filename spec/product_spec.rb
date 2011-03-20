@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe Product do
   before do
-    TaxCalculatorFactory.stub!(:load_tax_rate_calculator).and_return(TaxCalculator.new(nil, 0.1))
+    TaxCalculatorFactory.stub!(:load_tax_calculator).and_return(TaxCalculator.new(nil, 0.1))
   end
   
   describe "product attributes and methods" do
